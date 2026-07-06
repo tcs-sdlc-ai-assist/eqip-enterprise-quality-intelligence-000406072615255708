@@ -1,0 +1,127 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* ── Light theme: semantic role tokens as space-separated RGB ── */
+  :root {
+    --color-background: 255 255 255;
+    --color-surface: 255 255 255;
+    --color-surface-raised: 248 250 248;
+    --color-foreground: 17 24 39;
+    --color-foreground-muted: 107 114 128;
+    --color-border: 227 230 227;
+    --color-ring: 120 190 32;
+  }
+
+  /* ── Dark theme: true neutral dark with whisper of green warmth ── */
+  .dark {
+    --color-background: 10 12 10;
+    --color-surface: 20 24 20;
+    --color-surface-raised: 30 35 30;
+    --color-foreground: 245 245 245;
+    --color-foreground-muted: 163 168 163;
+    --color-border: 46 51 46;
+    --color-ring: 150 212 58;
+  }
+
+  /* ── Base typography ── */
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  h1 {
+    @apply text-3xl font-semibold tracking-tight leading-tight;
+  }
+
+  h2 {
+    @apply text-2xl font-semibold tracking-tight leading-tight;
+  }
+
+  h3 {
+    @apply text-xl font-medium leading-snug;
+  }
+
+  h4 {
+    @apply text-lg font-medium leading-snug;
+  }
+
+  /* ── Links ── */
+  a {
+    @apply text-primary-600 hover:text-primary-700 dark:text-primary-400 dark:hover:text-primary-300 transition-colors duration-fast;
+  }
+
+  /* ── Form elements: hairline border, clean focus ring ── */
+  input,
+  select,
+  textarea {
+    @apply border border-border rounded bg-surface text-foreground px-3 py-2 text-sm
+      focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent
+      disabled:opacity-50 disabled:cursor-not-allowed
+      transition-colors duration-fast;
+  }
+
+  /* ── Selection ── */
+  ::selection {
+    @apply bg-primary-200 text-primary-900;
+  }
+
+  .dark ::selection {
+    @apply bg-primary-800 text-primary-100;
+  }
+
+  /* ── Reduced motion ── */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* ── Button variants ── */
+  .btn-primary {
+    @apply bg-primary-600 text-white hover:bg-primary-700
+      focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2
+      rounded px-4 py-2 text-sm font-medium transition-colors duration-fast;
+  }
+
+  .btn-secondary {
+    @apply border border-border text-foreground hover:bg-surface-raised
+      focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2
+      rounded px-4 py-2 text-sm font-medium transition-colors duration-fast;
+  }
+
+  .btn-ghost {
+    @apply text-foreground hover:bg-surface-raised
+      focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2
+      rounded px-4 py-2 text-sm font-medium transition-colors duration-fast;
+  }
+
+  /* ── Card: hairline border, flat, generous padding ── */
+  .card {
+    @apply border border-border rounded-md bg-surface p-6;
+  }
+
+  /* ── Alert variants: desaturated status, small tonal badges ── */
+  .alert-success {
+    @apply bg-success-light text-success border border-success/20 rounded-md p-4 text-sm;
+  }
+
+  .alert-warning {
+    @apply bg-warning-light text-warning border border-warning/20 rounded-md p-4 text-sm;
+  }
+
+  .alert-error {
+    @apply bg-error-light text-error border border-error/20 rounded-md p-4 text-sm;
+  }
+
+  .alert-info {
+    @apply bg-info-light text-info border border-info/20 rounded-md p-4 text-sm;
+  }
+}
